@@ -1,11 +1,11 @@
 import React from 'react';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import "./Cart.css";
-const Cart = ({ cart }) => {
+const Cart = (props) => {
     let quantity = 0;
     let totalPrice = 0;
     let totalShipping = 0;
-    for (const product of cart) {
+    for (const product of props.cart) {
         quantity = quantity + product.quantity;
         totalPrice = totalPrice + (product.price * product.quantity);
         totalShipping = totalShipping + product.shipping;
@@ -27,7 +27,7 @@ const Cart = ({ cart }) => {
                     <ListGroupItem><h4>Grand Total: ${grandTotal}</h4></ListGroupItem>
                 </ListGroup>
                 <Card.Body>
-                    <button className='btn btn-outline border-white border-3 fw-bold text-white w-100 p-2'>Clear Cart</button>
+                    <button onClick={props.clearCart} className='btn btn-outline border-white border-3 fw-bold text-white w-100 p-2'>Clear Cart</button>
                 </Card.Body>
                 <Card.Body>
                     <button className='btn btn-outline border-white border-3 fw-bold text-white w-100 p-2'>Review Order</button>
