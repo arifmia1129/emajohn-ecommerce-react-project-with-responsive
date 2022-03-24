@@ -7,9 +7,8 @@
 .summary-container{
     position: sticky;
     top: 0px;
-    background-color: rgb(162, 216, 162);
-    height: 400px;
-    padding-left: 10px;
+    height: 450px;
+    /* padding-left: 10px; */
 }
 @media screen and (max-width:320px) {
     .summary-container{
