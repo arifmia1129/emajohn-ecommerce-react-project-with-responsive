@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import "./Cart.css"
+import "./Cart.css";
 const Cart = ({ cart }) => {
     let quantity = 0;
     let totalPrice = 0;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addDb, getStoredCart } from '../../utilities/fakeDb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css";
@@ -11,7 +12,18 @@ const Shop = () => {
     }, []);
 
     const [cart, setCart] = useState([]);
-
+    useEffect(() => {
+        const storedCart = getStoredCart();
+        let savedCard = [];
+        for (const id in storedCart) {
+            const addedCart = products.find(product => product.id === id);
+            if (addedCart) {
+                addedCart.quantity = storedCart[id];
+                savedCard.push(addedCart);
+            }
+        }
+        setCart(savedCard);
+    }, [products]);
     const addToCart = (selectedProduct) => {
         const exist = cart.find(product => product.id === selectedProduct.id);
         let totalOrders = [];
@@ -27,6 +39,9 @@ const Shop = () => {
 
         }
         setCart(totalOrders);
+        addDb(selectedProduct.id);
+
+
     }
     return (
         <div className='row shop-container my-3 mx-auto'>
