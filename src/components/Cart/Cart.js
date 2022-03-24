@@ -16,7 +16,7 @@ const Cart = (props) => {
     const grandTotal = totalPrice + totalShipping + tax;
     return (
         <div>
-            <Card className='bg-success text-white border-3 rounded-3 cart' style={{}}>
+            <Card className='bg-dark text-white border-3 rounded-3 cart' style={{}}>
 
                 <Card.Body>
                     <Card.Title className='text-center'>Order Summary</Card.Title>
