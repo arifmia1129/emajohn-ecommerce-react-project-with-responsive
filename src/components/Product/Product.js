@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, ListGroupItem, ListGroup } from 'react-bootstrap';
-import "./Product.css"
-
+import "./Product.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 const Product = ({ addToCart, product }) => {
     const { name, price, seller, ratings, img } = product;
     return (
@@ -19,6 +20,7 @@ const Product = ({ addToCart, product }) => {
                 <Card.Body>
                     <button onClick={() => addToCart(product)} className='w-100 border-0 bg-success p-3 rounded-3 text-white fw-bold'>
                         Add to cart
+                        <FontAwesomeIcon className='px-2' icon={faCartPlus}></FontAwesomeIcon>
                     </button>
                 </Card.Body>
             </Card>
