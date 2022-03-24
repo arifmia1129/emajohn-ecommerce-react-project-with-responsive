@@ -3,22 +3,35 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css";
 const Shop = () => {
-    const [products, setProducs] = useState([]);
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         fetch("products.json")
             .then(res => res.json())
-            .then(data => setProducs(data));
+            .then(data => setProducts(data));
     }, []);
 
     const [cart, setCart] = useState([]);
 
     const addToCart = (selectedProduct) => {
-        console.log(selectedProduct);
+        const exist = cart.find(product => product.id === selectedProduct.id);
+        let totalOrders = [];
+        if (!exist) {
+            selectedProduct.quantity = 1;
+            totalOrders = [...cart, selectedProduct];
+        }
+
+        else {
+            const rest = cart.filter(product => product.id !== exist.id);
+            selectedProduct.quantity = selectedProduct.quantity + 1;
+            totalOrders = [...rest, selectedProduct];
+
+        }
+        setCart(totalOrders);
     }
     return (
         <div className='row shop-container my-3 mx-auto'>
             <div className='col-md-3 summary-container'>
-                <Cart></Cart>
+                <Cart cart={cart}></Cart>
             </div>
             <div className='col-md-9 products-container'>
                 <div className='row'>
